@@ -7,9 +7,9 @@ export default function Home() {
       <h1 className="text-4xl font-bold">Welcome to Next.js!</h1>
       <ToDoCard todo={{
         id: "1",
-        title: "Sample ToDo",
+        title: "Sample Todo",
         completed: false,
-        createdAt: new Date()
+        createdAt: new Date().toISOString(),
       }} />
     </div>
    );
