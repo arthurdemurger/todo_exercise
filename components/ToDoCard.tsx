@@ -1,11 +1,11 @@
-import { ToDo } from "@/types/todo";
+import { Todo } from "@/types/todo";
 
-export default function ToDoCard({ todo }: { todo: ToDo }) {
+export default function TodoCard({ todo }: { todo: Todo }) {
   return (
     <div className="border p-4 rounded shadow-md">
       <h2 className="text-xl font-semibold">{todo.title}</h2>
       <p>Status: {todo.completed ? "Completed" : "Pending"}</p>
-      <p>Created At: {todo.createdAt.toLocaleDateString()}</p>
+      <p>Created At: {todo.createdAt}</p>
     </div>
   );
 }
