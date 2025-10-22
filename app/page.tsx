@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="space-y-6">
       <header className="flex items-center gap-4">
-        <h1 className="text-2xl font-bold">Todos</h1>
+        <h1 className="text-2xl font-bold">Todo List</h1>
 
         <div className="ml-auto flex items-center gap-3">
           <select value={sortKey} onChange={e=>setSortKey(e.target.value as SortKey)} className="border px-2 py-1 rounded">
@@ -33,7 +33,6 @@ export default function Home() {
 
       <ul className="grid gap-3">
         {data?.map(t => (
-          // use the unified TodoCard component for each item
           <TodoCard key={t.id} todo={t} />
         ))}
       </ul>
