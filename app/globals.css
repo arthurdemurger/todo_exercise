@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --card-border: rgba(15, 23, 42, 0.06);
 }
 
 @theme inline {
@@ -16,11 +19,55 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --surface: #0f1724; /* darker surface for cards */
+    --muted: #9ca3af;
+    --card-border: rgba(255,255,255,0.04);
   }
 }
 
+/* page base */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Card surface used across components for consistent look */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem; /* 12px */
+  padding: 0.875rem; /* 14px */
+  box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* subtle hover lift for interactive feel */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.12);
+}
+
+/* muted text helper */
+.muted {
+  color: var(--muted);
+}
+
+/* small utility tweaks for selects/links if needed */
+select {
+  background: transparent;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 0.35rem 0.5rem;
+}
+
+a.button-like {
+  display: inline-block;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(99,102,241,0.08);
+  color: #4f46e5;
+  text-decoration: none;
 }
