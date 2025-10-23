@@ -71,8 +71,8 @@ export default function TodoDetailPage({ id }: { id: string }) {
   if (isError || !todo) {
     return (
       <div className="mx-auto max-w-2xl p-6">
-        <p className="mb-4 text-red-600">Impossible de charger ce TODO.</p>
-        <Link href="/" className="underline">← Retour à la liste</Link>
+        <p className="mb-4 text-red-600">Impossible to load this TODO.</p>
+        <Link href="/" className="underline">← Back to list</Link>
       </div>
     )
   }

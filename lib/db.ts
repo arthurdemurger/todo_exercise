@@ -1,6 +1,6 @@
-// /lib/db.ts
 import { Todo, TodoCreate, TodoUpdate} from '@/types/todo';
 
+// In-memory "database" of todos
 const todos: Todo[] = [
   {
     id: '1',
@@ -14,7 +14,6 @@ const todos: Todo[] = [
     title: 'Clean the house',
     description: 'Living room, kitchen, and bathroom',
     completed: true,
-    // custom date
     createdAt: new Date(Date.now() - 86400000).toISOString(),
   },
   {
@@ -26,10 +25,12 @@ const todos: Todo[] = [
   }
 ];
 
+// Helper to generate a simple unique ID
 function genId(): string {
   return Math.random().toString(36).slice(2,10);
 }
 
+// Fetch the list of todos with sorting
 export function getTodos(
   sortKey: 'createdAt'|'title' = 'createdAt',
   sortDir: 'asc'|'desc' = 'desc'
@@ -47,11 +48,12 @@ export function getTodos(
   return clone;
 }
 
-
+// Fetch a single todo by ID
 export function getTodo(id: string): Todo | null {
   return todos.find(t => t.id === id) || null;
 }
 
+// Create a new todo
 export function createTodo(input: TodoCreate): Todo {
   const title = input.title.trim();
   const description = (input.description ?? '').trim();
@@ -71,6 +73,7 @@ export function createTodo(input: TodoCreate): Todo {
   return { ...newTodo } as Todo;
 }
 
+// Update an existing todo
 export function updateTodo(id: string, patch: TodoUpdate): Todo | null {
   const index = todos.findIndex(t => t.id === id);
   if (index === -1) {
@@ -89,6 +92,7 @@ export function updateTodo(id: string, patch: TodoUpdate): Todo | null {
   return { ...updated } as Todo;
 }
 
+// Delete a todo by ID
 export function deleteTodo(id: string): boolean {
   const index = todos.findIndex(t => t.id === id);
   if (index === -1) {

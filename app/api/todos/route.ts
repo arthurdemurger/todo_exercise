@@ -2,6 +2,7 @@ import { createTodo, getTodos } from '@/lib/db';
 import type { SortKey, SortDir, TodoCreate } from '@/types/todo';
 import { NextRequest, NextResponse } from 'next/server';
 
+// GET /api/todos
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -17,6 +18,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
+// POST /api/todos
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();

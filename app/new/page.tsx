@@ -2,7 +2,7 @@
 import { FormEvent, useState } from 'react'
 import { useCreateTodo } from '@/lib/queries'
 import { useRouter } from 'next/navigation'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Link from 'next/link';
 
 export default function NewTodoPage() {

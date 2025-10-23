@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getTodo, updateTodo, deleteTodo } from '@/lib/db'
 import type { TodoUpdate } from '@/types/todo'
 
-// GET /api/[id]
+// GET /api/todos/[id]
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -20,7 +20,7 @@ export async function GET(
   }
 }
 
-// PUT /api/[id]
+// PUT /api/todos/[id]
 export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -55,7 +55,7 @@ export async function PUT(
   }
 }
 
-// DELETE /api/[id]
+// DELETE /api/todos/[id]
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }

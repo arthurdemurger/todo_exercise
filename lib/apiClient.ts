@@ -2,6 +2,7 @@ import { SortDir, SortKey, Todo, TodoCreate, TodoUpdate } from '@/types/todo'
 
 const BASE = '/api/todos'
 
+// Fetch the list of todos with sorting
 export async function fetchTodos(sortKey: SortKey, sortDir: SortDir): Promise<Todo[]> {
   const ret = await fetch(
     `${BASE}?sortKey=${sortKey}&sortDir=${sortDir}`
@@ -12,6 +13,7 @@ export async function fetchTodos(sortKey: SortKey, sortDir: SortDir): Promise<To
   return (await ret.json()).data;
 }
 
+// Create a new todo
 export async function createTodoApi(input: TodoCreate): Promise<Todo> {
   const ret = await fetch(BASE, {
     method: 'POST',
@@ -24,6 +26,7 @@ export async function createTodoApi(input: TodoCreate): Promise<Todo> {
   return (await ret.json()).data;
 }
 
+// Update an existing todo
 export async function updateTodoApi(id: string, patch: TodoUpdate) {
   const ret = await fetch(`/api/todos/${id}`, {
     method: 'PUT',
