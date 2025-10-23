@@ -2,6 +2,7 @@
 import { FormEvent, useState } from 'react'
 import { useCreateTodo } from '@/lib/queries'
 import { useRouter } from 'next/navigation'
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function NewTodoPage() {
   const [title, setTitle] = useState('');
@@ -15,7 +16,10 @@ export default function NewTodoPage() {
     e.preventDefault();
     mutate(
       { title, description: description || undefined, completed },
-      { onSuccess: () => router.push('/') }
+      { onSuccess: () => {
+        toast.success('Todo created successfully');
+        router.push('/');
+      }}
     )
   }
 
@@ -44,6 +48,15 @@ export default function NewTodoPage() {
             placeholder="Optional details"
           />
         </div>
+
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={completed}
+            onChange={e => setCompleted(e.target.checked)}
+          />
+          Completed
+        </label>
 
         <div className="flex gap-2">
           <button

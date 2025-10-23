@@ -1,7 +1,29 @@
 // /lib/db.ts
 import { Todo, TodoCreate, TodoUpdate} from '@/types/todo';
 
-const todos: Todo[] = [];
+const todos: Todo[] = [
+  {
+    id: '1',
+    title: 'Do the groceries',
+    description: 'Buy milk, bread, and eggs',
+    completed: false,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '2',
+    title: 'Clean the house',
+    description: 'Living room, kitchen, and bathroom',
+    completed: true,
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '3',
+    title: 'Finish the project',
+    description: 'Complete the final report and send it to the team',
+    completed: false,
+    createdAt: new Date().toISOString()
+  }
+];
 
 function genId(): string {
   return Math.random().toString(36).slice(2,10);
