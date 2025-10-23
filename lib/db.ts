@@ -7,21 +7,22 @@ const todos: Todo[] = [
     title: 'Do the groceries',
     description: 'Buy milk, bread, and eggs',
     completed: false,
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
   },
   {
     id: '2',
     title: 'Clean the house',
     description: 'Living room, kitchen, and bathroom',
     completed: true,
-    createdAt: new Date().toISOString()
+    // custom date
+    createdAt: new Date(Date.now() - 86400000).toISOString(),
   },
   {
     id: '3',
     title: 'Finish the project',
     description: 'Complete the final report and send it to the team',
     completed: false,
-    createdAt: new Date().toISOString()
+    createdAt: new Date(Date.now() - 43200000).toISOString(),
   }
 ];
 

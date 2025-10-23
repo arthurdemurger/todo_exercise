@@ -5,39 +5,40 @@ import { Todo } from "@/types/todo";
 export default function TodoCard({ todo }: { todo: Todo }) {
   const { mutate, isPending } = useUpdateTodo(todo.id);
 
+  function onCheckboxClick(e: React.MouseEvent<HTMLInputElement>) {
+    e.stopPropagation();
+  }
+
+  function onCheckboxChange(e: React.ChangeEvent<HTMLInputElement>) {
+    e.stopPropagation();
+    mutate({ completed: !todo.completed });
+  }
+
   return (
-    <li className="card flex items-center justify-between">
-      <div>
-        <div className={todo.completed ? 'line-through text-gray-400' : ''}>
-          {todo.title}
+    <li>
+      <Link href={`/${todo.id}`} className="card flex items-center justify-between p-4">
+        <div>
+          <div className={todo.completed ? 'line-through text-gray-400' : ''}>
+            {todo.title}
+          </div>
+          <div className="text-xs text-gray-500">
+            {new Date(todo.createdAt).toLocaleString()}
+          </div>
         </div>
-        <div className="text-xs text-gray-500">
-          {new Date(todo.createdAt).toLocaleString()}
+
+        <div className="flex items-center gap-4">
+          <label className="flex items-center gap-2 text-sm" onClick={(e) => e.stopPropagation()}>
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onClick={onCheckboxClick}
+              onChange={onCheckboxChange}
+              disabled={isPending}
+            />
+            {isPending ? 'Updating…' : (todo.completed ? 'Completed' : 'Incomplete')}
+          </label>
         </div>
-      </div>
-
-      <div className="flex items-center gap-4">
-
-        <label className="flex items-center gap-2 text-sm">
-          <input
-            type="checkbox"
-            checked={todo.completed}
-            onChange={() => mutate({ completed: !todo.completed })}
-            disabled={isPending}
-          />
-          {isPending ? 'Updating…' : (todo.completed ? 'Completed' : 'Incomplete')}
-        </label>
-
-        <Link href={`/${todo.id}`}>
-          <button
-            type="button"
-            className="btn btn-sm px-3 py-1 text-sm text-yellow-700 hover:bg-yellow-200 focus:ring-yellow-500"
-            aria-label={`Edit todo ${todo.title}`}
-          >
-            Edit
-          </button>
-        </Link>
-      </div>
+      </Link>
     </li>
   );
 }

@@ -3,6 +3,7 @@ import { FormEvent, useState } from 'react'
 import { useCreateTodo } from '@/lib/queries'
 import { useRouter } from 'next/navigation'
 import { ToastContainer, toast } from 'react-toastify';
+import Link from 'next/link';
 
 export default function NewTodoPage() {
   const [title, setTitle] = useState('');
@@ -24,9 +25,11 @@ export default function NewTodoPage() {
   }
 
   return (
-    <div className="mx-auto max-w-lg p-6">
-      <h1 className="mb-4 text-2xl font-semibold">Create a Todo</h1>
-
+    <div className="mx-auto max-w-lg p-8 rounded-xl border shadow space-y-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Todo details</h1>
+        <Link href="/" className="text-sm underline">← Back to list</Link>
+      </div>
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
           <label className="mb-1 block text-sm">Title *</label>
