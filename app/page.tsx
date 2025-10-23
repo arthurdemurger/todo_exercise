@@ -6,9 +6,9 @@ import Link from 'next/link';
 import TodoCard from '@/components/ToDoCard';
 
 export default function Home() {
-  const [sortKey, setSortKey] = useState<SortKey>('createdAt')
-  const [sortDir, setSortDir] = useState<SortDir>('desc')
-  const { data, isLoading, isError } = useTodos(sortKey, sortDir)
+  const [sortKey, setSortKey] = useState<SortKey>('createdAt');
+  const [sortDir, setSortDir] = useState<SortDir>('desc');
+  const { data, isLoading, isError } = useTodos(sortKey, sortDir);
 
   return (
     <div className="space-y-6">

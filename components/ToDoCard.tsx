@@ -1,20 +1,42 @@
+import Link from "next/link";
+import { useUpdateTodo } from "@/lib/queries";
 import { Todo } from "@/types/todo";
 
 export default function TodoCard({ todo }: { todo: Todo }) {
+  const { mutate, isPending } = useUpdateTodo(todo.id);
+
   return (
     <li className="card flex items-center justify-between">
-      <div className="min-w-0">
-        <h3 className={`text-lg font-semibold truncate ${todo.completed ? 'line-through text-gray-400' : ''}`}>
+      <div>
+        <div className={todo.completed ? 'line-through text-gray-400' : ''}>
           {todo.title}
-        </h3>
-        <div className="text-xs muted">{new Date(todo.createdAt).toLocaleString()}</div>
+        </div>
+        <div className="text-xs text-gray-500">
+          {new Date(todo.createdAt).toLocaleString()}
+        </div>
       </div>
 
-      <div className="flex flex-col items-end gap-2 ml-4">
-        <span className={`text-xs px-2 py-0.5 rounded-full ${todo.completed ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
-          {todo.completed ? 'Completed' : 'Incomplete'}
-        </span>
-        <button className="text-xs text-blue-600 hover:underline">Details</button>
+      <div className="flex items-center gap-4">
+
+        <label className="flex items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={todo.completed}
+            onChange={() => mutate({ completed: !todo.completed })}
+            disabled={isPending}
+          />
+          {isPending ? 'Updating…' : (todo.completed ? 'Completed' : 'Incomplete')}
+        </label>
+
+        <Link href={`/${todo.id}`}>
+          <button
+            type="button"
+            className="btn btn-sm px-3 py-1 text-sm text-yellow-700 hover:bg-yellow-200 focus:ring-yellow-500"
+            aria-label={`Edit todo ${todo.title}`}
+          >
+            Edit
+          </button>
+        </Link>
       </div>
     </li>
   );
