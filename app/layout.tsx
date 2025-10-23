@@ -5,6 +5,9 @@ import Providers from './providers'
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icon.png" />
+      </head>
       <body className="bg-[--color-background] text-[--color-foreground] antialiased">
         <Providers>
           <div className="min-h-screen max-w-4xl mx-auto p-6">
